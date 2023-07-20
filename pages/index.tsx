@@ -9,7 +9,11 @@ export default function Home() {
   const { activeChatId, allChats, onAction } = useChats("2939");
   return (
     <Dashboard>
-      <Sidebar chats={allChats} activeChatId={activeChat} onAction={onAction} />
+      <Sidebar
+        chats={allChats}
+        activeChatId={activeChatId}
+        onAction={onAction}
+      />
       <Main activeChatId={activeChat} />
     </Dashboard>
   );
