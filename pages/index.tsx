@@ -29,10 +29,12 @@ const allChats: ChatMeta[] = [
   },
 ];
 
+const activeChat = null;
+
 export default function Home() {
   return (
     <Dashboard>
-      <Sidebar chats={allChats} />
+      <Sidebar chats={allChats} activeChatId={activeChat} />
       <div>Main content</div>
     </Dashboard>
   );

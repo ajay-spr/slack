@@ -4,6 +4,7 @@ import SidebarSection from "./SidebarSection";
 
 type SidebarProps = {
   chats: ChatMeta[];
+  activeChatId: null | string;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ chats }) => {
