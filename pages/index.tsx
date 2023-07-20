@@ -1,41 +1,15 @@
 import Dashboard from "@/components/Dashboard";
 import Sidebar from "@/components/Sidebar";
-import { ChatMeta } from "@/types";
 import Main from "@/components/Main";
-import { Inter } from "next/font/google";
+import useChats from "@/hooks/useChats";
 
-const allChats: ChatMeta[] = [
-  {
-    id: "1",
-    title: "general",
-    isChannel: true,
-    users: ["Erling Haaland", "Leo Messi", "Kylian Mbappe"],
-  },
-  {
-    id: "2",
-    isChannel: false,
-    title: "Peaky Blinders",
-    users: ["Ajay Yadav", "Oliver Queen", "Thomas Shelby"],
-  },
-  {
-    id: "3",
-    isChannel: true,
-    title: "discussions",
-    users: ["Erling Haaland", "Leo Messi", "Ajay Yadav", "Oliver Queen"],
-  },
-  {
-    id: "4",
-    isChannel: false,
-    users: ["Leo Messi"],
-  },
-];
-
-const activeChat = null;
+const activeChat = "4";
 
 export default function Home() {
+  const { activeChatId, allChats, onAction } = useChats("2939");
   return (
     <Dashboard>
-      <Sidebar chats={allChats} activeChatId={activeChat} />
+      <Sidebar chats={allChats} activeChatId={activeChat} onAction={onAction} />
       <Main activeChatId={activeChat} />
     </Dashboard>
   );
