@@ -1,13 +1,39 @@
-import { Inter } from 'next/font/google'
+import Dashboard from "@/components/Dashboard";
+import Sidebar from "@/components/Sidebar";
+import { ChatMeta } from "@/types";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const allChats: ChatMeta[] = [
+  {
+    id: "1",
+    title: "general",
+    isChannel: true,
+    users: ["Erling Haaland", "Leo Messi", "Kylian Mbappe"],
+  },
+  {
+    id: "2",
+    isChannel: false,
+    title: "Peaky Blinders",
+    users: ["Ajay Yadav", "Oliver Queen", "Thomas Shelby"],
+  },
+  {
+    id: "3",
+    isChannel: true,
+    title: "discussions",
+    users: ["Erling Haaland", "Leo Messi", "Ajay Yadav", "Oliver Queen"],
+  },
+  {
+    id: "4",
+    isChannel: false,
+    users: ["Leo Messi"],
+  },
+];
 
 export default function Home() {
   return (
-    <main
-      className={`flex ${inter.className}`}
-    >
-      <p>Welcome</p>
-    </main>
-  )
+    <Dashboard>
+      <Sidebar chats={allChats} />
+      <div>Main content</div>
+    </Dashboard>
+  );
 }
