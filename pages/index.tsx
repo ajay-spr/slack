@@ -1,6 +1,7 @@
 import Dashboard from "@/components/Dashboard";
 import Sidebar from "@/components/Sidebar";
 import { ChatMeta } from "@/types";
+import Main from "@/components/Main";
 import { Inter } from "next/font/google";
 
 const allChats: ChatMeta[] = [
@@ -35,7 +36,7 @@ export default function Home() {
   return (
     <Dashboard>
       <Sidebar chats={allChats} activeChatId={activeChat} />
-      <div>Main content</div>
+      <Main activeChatId={activeChat} />
     </Dashboard>
   );
 }
