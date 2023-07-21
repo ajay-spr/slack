@@ -8,7 +8,11 @@ const Loading = () => {
     }, 300);
     return () => clearInterval(timer);
   }, []);
-  return <div>Loading{dot}</div>;
+  return (
+    <div className="h-full w-full flex justify-center items-center">
+      Loading{dot}
+    </div>
+  );
 };
 
 export default Loading;

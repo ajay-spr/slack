@@ -12,7 +12,7 @@ const Main: React.FC<MainProps> = ({ activeChatId }) => {
       subText="Please select a chat from the sidebar to view"
     />
   ) : (
-    <Chat id="123" />
+    <Chat id={activeChatId} key={activeChatId} />
   );
 };
 

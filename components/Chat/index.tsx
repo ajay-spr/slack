@@ -1,5 +1,5 @@
 import useMessages from "@/hooks/useMessages";
-import Loading from "./Loading";
+import Loading from "../Loading";
 
 type ChatProps = {
   id: string;
@@ -8,7 +8,11 @@ type ChatProps = {
 const Chat = ({ id }: ChatProps) => {
   const { isLoading, messages, onAction } = useMessages("12");
 
-  return isLoading ? <Loading /> : <div>Chat here</div>;
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <div className="relative w-full h-full">Chat</div>
+  );
 };
 
 export default Chat;
