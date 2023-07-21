@@ -1,11 +1,12 @@
 import { ChatMetaData } from "@/types";
 import OrgDetails from "./OrgDetails";
 import SidebarSection from "./SidebarSection";
+import { ChatActionType } from "@/hooks/useChats";
 
 type SidebarProps = {
   chats: ChatMetaData[];
   activeChatId: null | string;
-  onAction: () => void;
+  onAction: (type: ChatActionType, payload: any) => void;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ chats, activeChatId, onAction }) => {

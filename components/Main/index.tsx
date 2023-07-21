@@ -1,3 +1,4 @@
+import Chat from "../Chat";
 import EmptyState from "../EmptyState";
 
 type MainProps = {
@@ -10,7 +11,9 @@ const Main: React.FC<MainProps> = ({ activeChatId }) => {
       title="Nothing to see here"
       subText="Please select a chat from the sidebar to view"
     />
-  ) : null;
+  ) : (
+    <Chat id="123" />
+  );
 };
 
 export default Main;
