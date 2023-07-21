@@ -1,8 +1,8 @@
-import { ChatMeta } from "@/types";
+import { ChatMetaData } from "@/types";
 
 type SidebarSectionProps = {
   title: string;
-  chats: ChatMeta[];
+  chats: ChatMetaData[];
   activeChatId: string | null;
   onAction: () => void;
 };
@@ -15,10 +15,10 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
   activeChatId,
   onAction,
 }) => {
-  const getTitle = (chat: ChatMeta) => {
+  const getTitle = (chat: ChatMetaData) => {
     if (chat.isChannel) return "#" + chat.title;
     let title = "";
-    chat.users.forEach((user) => (title += ", " + user));
+    chat.users.forEach((user) => (title += ", " + user.fullName));
     title = title.slice(2);
     if (title.length > MAX_TITLE_LENGTH) {
       title = title.slice(0, MAX_TITLE_LENGTH);
@@ -28,12 +28,12 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
   };
   return (
     <div className="my-4">
-      <span className="uppercase text-sm text-blue-900">{title}</span>
+      <span className="uppercase text-sm text-white/50">{title}</span>
       {chats.map((chat) => (
         <div
           key={chat.id}
-          className={`cursor-pointer pl-4 rounded hover:bg-blue-400/30 px-2 py-1 ${
-            activeChatId == chat.id ? "bg-blue-600" : "bg-transparent"
+          className={`cursor-pointer pl-4 rounded hover:bg-slackBlue/80 px-2 py-1 ${
+            activeChatId == chat.id ? "bg-slackBlue" : "bg-transparent"
           }`}
         >
           {getTitle(chat)}

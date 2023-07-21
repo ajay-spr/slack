@@ -1,9 +1,9 @@
-import { ChatMeta } from "@/types";
+import { ChatMetaData } from "@/types";
 import OrgDetails from "./OrgDetails";
 import SidebarSection from "./SidebarSection";
 
 type SidebarProps = {
-  chats: ChatMeta[];
+  chats: ChatMetaData[];
   activeChatId: null | string;
   onAction: () => void;
 };
@@ -13,7 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({ chats, activeChatId, onAction }) => {
   const dmList = chats.filter((chat) => !chat.isChannel);
 
   return (
-    <div className="h-screen p-2 bg-blue-500 sticky top-0">
+    <div className="h-screen p-2 bg-aubergine sticky top-0 text-white">
       <OrgDetails />
       <SidebarSection
         title="Channels"

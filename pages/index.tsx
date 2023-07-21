@@ -3,8 +3,6 @@ import Sidebar from "@/components/Sidebar";
 import Main from "@/components/Main";
 import useChats from "@/hooks/useChats";
 
-const activeChat = "4";
-
 export default function Home() {
   const { activeChatId, allChats, onAction } = useChats("2939");
   return (
@@ -14,7 +12,7 @@ export default function Home() {
         activeChatId={activeChatId}
         onAction={onAction}
       />
-      <Main activeChatId={activeChat} />
+      <Main activeChatId={activeChatId} />
     </Dashboard>
   );
 }

@@ -1,34 +1,38 @@
-import { ChatMeta } from "@/types";
+import { ChatMetaData, User } from "@/types";
+import { UDeBruyne, UHaaland, UKane, UMbappe, UMessi, UNeymar, URonaldo, USalah } from "@/utils/generateUsers";
 import { useState } from "react"
 
 const useChats = (userId: string) => {
     const [activeChatId, setActiveChatId] = useState<null | string>(null)
-    const allChats: ChatMeta[] = [
+   
+    const allChats: ChatMetaData[] = [
         {
           id: "1",
           title: "general",
           isChannel: true,
-          users: ["Erling Haaland", "Leo Messi", "Kylian Mbappe"],
+          description: "Our cool channel",
+          users: [UMessi, USalah, URonaldo],
         },
         {
           id: "2",
           isChannel: false,
           title: "Peaky Blinders",
-          users: ["Ajay Yadav", "Oliver Queen", "Thomas Shelby"],
+          users: [UHaaland, UNeymar, UDeBruyne, UMbappe],
         },
         {
           id: "3",
           isChannel: true,
           title: "discussions",
-          users: ["Erling Haaland", "Leo Messi", "Ajay Yadav", "Oliver Queen"],
+          description: "A nice little description here",
+          users: [UHaaland, USalah, UDeBruyne, UKane],
         },
         {
           id: "4",
           isChannel: false,
-          users: ["Leo Messi"],
+          users: [UMessi],
         },
       ];
-      
+
     const onAction = () => {
     }
 
