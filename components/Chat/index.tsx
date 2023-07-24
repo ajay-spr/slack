@@ -1,17 +1,23 @@
 import useMessages from "@/hooks/useMessages";
 import Loading from "../Loading";
+import useChatDetails from "@/hooks/userChatDetails";
+import ChatHeader from "./ChatHeader";
 
 type ChatProps = {
   id: string;
 };
 
 const Chat = ({ id }: ChatProps) => {
-  const { isLoading, messages, onAction } = useMessages("12");
+  const { details } = useChatDetails(id);
+  const { isLoading, messages, onAction } = useMessages(id);
 
-  return isLoading ? (
-    <Loading />
-  ) : (
-    <div className="relative w-full h-full">Chat</div>
+  return (
+    <div className="relative w-full h-full">
+      <ChatHeader details={details} />
+      {
+        isLoading ? <Loading /> : null // MessageList here
+      }
+    </div>
   );
 };
 

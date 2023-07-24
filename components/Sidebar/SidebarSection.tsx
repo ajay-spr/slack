@@ -1,5 +1,6 @@
 import { ChatActionType } from "@/hooks/useChats";
 import { ChatMetaData } from "@/types";
+import { getTitle } from "@/utils/getChatTitle";
 
 type SidebarSectionProps = {
   title: string;
@@ -8,25 +9,12 @@ type SidebarSectionProps = {
   onAction: (type: ChatActionType.UPDATE_ACTIVE_CHAT_ID, payload: any) => void;
 };
 
-const MAX_TITLE_LENGTH = 30;
-
 const SidebarSection: React.FC<SidebarSectionProps> = ({
   title,
   chats,
   activeChatId,
   onAction,
 }) => {
-  const getTitle = (chat: ChatMetaData) => {
-    if (chat.isChannel) return "#" + chat.title;
-    let title = "";
-    chat.users.forEach((user) => (title += ", " + user.fullName));
-    title = title.slice(2);
-    if (title.length > MAX_TITLE_LENGTH) {
-      title = title.slice(0, MAX_TITLE_LENGTH);
-      title += "...";
-    }
-    return title;
-  };
   return (
     <div className="my-4">
       <span className="uppercase text-sm text-white/50">{title}</span>

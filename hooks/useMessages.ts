@@ -11,7 +11,6 @@ const useMessages = (chatId:string) => {
             const res = await delay(1000); 
             setMessages([])
             setIsLoading(false)
-            console.log("Done")
         }
         fetchMessages()
     }, [])
