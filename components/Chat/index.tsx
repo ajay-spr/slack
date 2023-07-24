@@ -2,6 +2,8 @@ import useMessages from "@/hooks/useMessages";
 import Loading from "../Loading";
 import useChatDetails from "@/hooks/userChatDetails";
 import ChatHeader from "./ChatHeader";
+import MessageList from "../MessageList";
+import SendMessage from "../SendMessage";
 
 type ChatProps = {
   id: string;
@@ -12,11 +14,10 @@ const Chat = ({ id }: ChatProps) => {
   const { isLoading, messages, onAction } = useMessages(id);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full flex flex-col">
       <ChatHeader details={details} />
-      {
-        isLoading ? <Loading /> : null // MessageList here
-      }
+      {isLoading ? <Loading /> : <MessageList />}
+      <SendMessage onSend={(message: string) => {}} />
     </div>
   );
 };
