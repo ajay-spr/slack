@@ -15,7 +15,7 @@ const useMessages = (chatId:string) => {
     useEffect(() => {
         const fetchMessages = async () => {
             await delay(1000);
-            dispatch({type: MessagesActionType.INITIALIZE_MESSAGES, payload:{isLoading: false, messages: generateMessages(10)}}) 
+            dispatch({type: MessagesActionType.INITIALIZE_MESSAGES, payload:{isLoading: false, messages: generateMessages(40)}}) 
         }
         fetchMessages()
     }, [])
