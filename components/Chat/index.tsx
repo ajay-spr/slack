@@ -10,7 +10,7 @@ type ChatProps = {
 };
 
 const Chat = ({ id }: ChatProps) => {
-  const { details } = useChatDetails(id);
+  const { details, dispatch: _dispatch } = useChatDetails(id);
   const { isLoading, messages, onAction } = useMessages(id);
 
   return (

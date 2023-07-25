@@ -1,21 +1,27 @@
 import { chats } from "@/db"
-import { ChatMetaData } from "@/types"
-import { useEffect, useState } from "react"
+import { chatDetailsReducer } from "@/reducers/chatDetailsReducer"
+import { ChatDetailsActionType, ChatDetailsState, ChatMetaData } from "@/types"
+import { useEffect, useReducer, useState } from "react"
 
 const fetchDetails = (id: string) => {
     return chats.filter(chat => chat.id == id)[0]
 }
 
+const initialState: ChatDetailsState = {
+    details: null
+}
+
 const useChatDetails = (id: string) => {
-    const [details, setDetails] = useState<null | ChatMetaData>(null)
+    const [state, dispatch] = useReducer(chatDetailsReducer, initialState)
     useEffect(() => {
         const fetchChatDetails = async () => {
             const res = fetchDetails(id)
-            setDetails(res)
+            dispatch({type: ChatDetailsActionType.INITIALIZE_CHAT_DETAILS, payload: {details: res}})
         }
         fetchChatDetails()
     }, [id])
-    return {details}
+    return {details: state.details, dispatch}
 }
+
 
 export default useChatDetails

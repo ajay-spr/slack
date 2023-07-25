@@ -11,14 +11,27 @@ export enum ChatActionType {
     INITIALIZE_CHATS
 }
 
+export enum ChatDetailsActionType {
+    INITIALIZE_CHAT_DETAILS
+}
+
 export type ChatAction = {
     type: ChatActionType,
+    payload: any
+}
+
+export type ChatDetailsAction = {
+    type: ChatDetailsActionType,
     payload: any
 }
 
 export type ChatState = {
     activeChatId: string | null,
     allChats: ChatMetaData[]
+}
+
+export type ChatDetailsState = {
+    details: ChatMetaData | null
 }
 
 export type ChatMetaData = {
