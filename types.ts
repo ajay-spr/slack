@@ -11,6 +11,10 @@ export enum ChatActionType {
     INITIALIZE_CHATS
 }
 
+export enum MessagesActionType {
+    INITIALIZE_MESSAGES
+}
+
 export enum ChatDetailsActionType {
     INITIALIZE_CHAT_DETAILS
 }
@@ -18,6 +22,16 @@ export enum ChatDetailsActionType {
 export type ChatAction = {
     type: ChatActionType,
     payload: any
+}
+
+export type MessagesAction = {
+    type: MessagesActionType,
+    payload: any
+}
+
+export type MessagesState = {
+    isLoading: boolean,
+    messages: Message[]   
 }
 
 export type ChatDetailsAction = {

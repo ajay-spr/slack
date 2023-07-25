@@ -1,24 +1,25 @@
-import { Message } from "@/types"
+import { messagesReducer } from "@/reducers/messagesReducer"
+import { Message, MessagesActionType } from "@/types"
 import { delay } from "@/utils/delay"
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
+
+const initialState = {
+    isLoading: true,
+    messages: []
+}
 
 const useMessages = (chatId:string) => {
-    const [isLoading, setIsLoading] = useState(true)
-    const [messages, setMessages] = useState<null | Message[]>(null)
+    const [state, dispatch] = useReducer(messagesReducer, initialState)
 
     useEffect(() => {
         const fetchMessages = async () => {
-            const res = await delay(1000); 
-            setMessages([])
-            setIsLoading(false)
+            await delay(1000);
+            dispatch({type: MessagesActionType.INITIALIZE_MESSAGES, payload:{isLoading: false, messages: []}}) 
         }
         fetchMessages()
     }, [])
-    const onAction = () => {
 
-    }
-
-    return {messages, isLoading, onAction}
+    return {messages:state.messages, isLoading:state.isLoading, dispatch}
 }
 
 export default useMessages

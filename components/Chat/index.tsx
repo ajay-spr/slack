@@ -10,9 +10,8 @@ type ChatProps = {
 };
 
 const Chat = ({ id }: ChatProps) => {
-  const { details, dispatch: _dispatch } = useChatDetails(id);
-  const { isLoading, messages, onAction } = useMessages(id);
-
+  const { details, dispatch: _chatDetailsdispatch } = useChatDetails(id);
+  const { isLoading, messages, dispatch: messagesDispatch } = useMessages(id);
   return (
     <div className="relative w-full h-full flex flex-col">
       <ChatHeader details={details} />
