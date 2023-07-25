@@ -1,7 +1,8 @@
 import { messagesReducer } from "@/reducers/messagesReducer"
-import { Message, MessagesActionType } from "@/types"
+import { MessagesActionType } from "@/types"
 import { delay } from "@/utils/delay"
-import { useEffect, useReducer, useState } from "react"
+import { generateMessages } from "@/utils/generateMessages"
+import { useEffect, useReducer } from "react"
 
 const initialState = {
     isLoading: true,
@@ -14,7 +15,7 @@ const useMessages = (chatId:string) => {
     useEffect(() => {
         const fetchMessages = async () => {
             await delay(1000);
-            dispatch({type: MessagesActionType.INITIALIZE_MESSAGES, payload:{isLoading: false, messages: []}}) 
+            dispatch({type: MessagesActionType.INITIALIZE_MESSAGES, payload:{isLoading: false, messages: generateMessages(10)}}) 
         }
         fetchMessages()
     }, [])

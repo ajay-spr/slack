@@ -1,37 +1,37 @@
+import { Message } from "./types";
 import { ChatMetaData } from "./types";
-import { UDeBruyne, UHaaland, UKane, UMbappe, UMessi, UNeymar, URonaldo, USalah } from "./utils/generateUsers";
+import { users } from "./utils/generateUsers";
 
 export const chats: ChatMetaData[] = [{
     id: "1",
     title: "general",
     isChannel: true,
     description: "Our cool channel",
-    users: [UMessi, USalah, URonaldo],
+    users: [ users[1].id, users[8].id, users[9].id],
   },
   {
     id: "2",
     isChannel: false,
     title: "Peaky Blinders",
-    users: [UHaaland, UNeymar, UDeBruyne, UMbappe],
+    users: [users[5].id, users[2].id, users[3].id, users[1].id, users[8].id, users[9].id],
   },
   {
     id: "3",
     isChannel: true,
     title: "discussions",
     description: "A nice little description here",
-    users: [UHaaland, USalah, UDeBruyne, UKane],
+    users: [users[3].id, users[4].id, users[6].id, users[7].id],
   },
   {
     id: "4",
     isChannel: false,
-    users: [UMessi],
+    users: [users[1].id, users[2].id, users[3].id],
   },
   {
     id: "5",
     isChannel: true,
     description: "the best channel",
     title: "music",
-    users: [UMessi, UMbappe, URonaldo, USalah, UHaaland]
+    users: [users[1].id, users[2].id, users[5].id, users[6].id]
   }
 ]
-

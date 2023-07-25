@@ -15,8 +15,8 @@ const Chat = ({ id }: ChatProps) => {
   return (
     <div className="relative w-full h-full flex flex-col">
       <ChatHeader details={details} />
-      {isLoading ? <Loading /> : <MessageList />}
-      <SendMessage onSend={(message: string) => {}} />
+      {isLoading ? <Loading /> : <MessageList messages={messages} />}
+      <SendMessage onSend={(_message: string) => {}} />
     </div>
   );
 };

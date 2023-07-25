@@ -31,7 +31,7 @@ export type MessagesAction = {
 
 export type MessagesState = {
     isLoading: boolean,
-    messages: Message[]   
+    messages: TMessage[]   
 }
 
 export type ChatDetailsAction = {
@@ -52,19 +52,19 @@ export type ChatMetaData = {
     id: string
     title?: string
     isChannel: false
-    users: User[]
+    users: string[]
 } | {
     id: string,
     title: string,
     isChannel: true,
     description: string
-    users: User[]
+    users: string[]
 }
 
 type CommonMessageType = {
-    from: User,
+    id: string,
+    from: string,
     timestamp: Date,
-
 }
 
 type MessageVariants = 
@@ -77,4 +77,4 @@ type MessageVariants =
         fileURL: string 
     }
 
-export type Message = CommonMessageType & MessageVariants
+export type TMessage = CommonMessageType & MessageVariants
