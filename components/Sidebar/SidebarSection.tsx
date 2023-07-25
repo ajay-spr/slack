@@ -1,12 +1,11 @@
-import { ChatActionType } from "@/hooks/useChats";
-import { ChatMetaData } from "@/types";
+import { ChatActionType, ChatMetaData } from "@/types";
 import { getTitle } from "@/utils/getChatTitle";
 
 type SidebarSectionProps = {
   title: string;
   chats: ChatMetaData[];
   activeChatId: string | null;
-  onAction: (type: ChatActionType.UPDATE_ACTIVE_CHAT_ID, payload: any) => void;
+  onAction: (action: any) => void;
 };
 
 const SidebarSection: React.FC<SidebarSectionProps> = ({
@@ -22,7 +21,10 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
         <div
           key={chat.id}
           onClick={() =>
-            onAction(ChatActionType.UPDATE_ACTIVE_CHAT_ID, { id: chat.id })
+            onAction({
+              type: ChatActionType.UPDATE_ACTIVE_CHAT_ID,
+              payload: { id: chat.id },
+            })
           }
           className={`cursor-pointer pl-4 rounded hover:bg-slackBlue/80 px-2 py-1 ${
             activeChatId == chat.id ? "bg-slackBlue" : "bg-transparent"

@@ -1,30 +1,28 @@
 import { chats } from "@/db";
-import { ChatMetaData } from "@/types";
-import { UDeBruyne, UHaaland, UKane, UMbappe, UMessi, UNeymar, URonaldo, USalah } from "@/utils/generateUsers";
-import { useState } from "react"
+import { chatReducer } from "@/reducers/chatReducer";
+import { ChatActionType, ChatState } from "@/types";
+import { useEffect, useReducer } from "react"
 
-export enum ChatActionType {
-    UPDATE_ACTIVE_CHAT_ID
-}
-
+const initialState:ChatState = {
+  activeChatId: null as null | string,
+  allChats: [],
+};
 
 const useChats = (userId: string) => {
-    const [activeChatId, setActiveChatId] = useState<null | string>(null)
-   
-    const allChats: ChatMetaData[] = chats
+  
+    const [state, dispatch] = useReducer(chatReducer, initialState);
 
-    const onAction = (type: ChatActionType, payload: any) => {
-        switch(type) {
-            case ChatActionType.UPDATE_ACTIVE_CHAT_ID:
-                // do here
-                setActiveChatId(payload.id)
-                break
-            default:
-                break
-        }
-    }
-
-    return {activeChatId, allChats, onAction}
-}
-
+    useEffect(() => {
+        dispatch({
+            type: ChatActionType.INITIALIZE_CHATS,
+            payload:{chats}      
+        })
+    }, [userId])
+  
+    return {
+      activeChatId: state.activeChatId,
+      allChats: state.allChats,
+      onAction: dispatch,
+    };
+  };
 export default useChats

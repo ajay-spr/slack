@@ -1,6 +1,5 @@
 import { chats } from "@/db"
 import { ChatMetaData } from "@/types"
-import { delay } from "@/utils/delay"
 import { useEffect, useState } from "react"
 
 const fetchDetails = (id: string) => {

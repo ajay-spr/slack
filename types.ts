@@ -5,6 +5,22 @@ export type User = {
     profilePicURL?: string
 }
 
+
+export enum ChatActionType {
+    UPDATE_ACTIVE_CHAT_ID,
+    INITIALIZE_CHATS
+}
+
+export type ChatAction = {
+    type: ChatActionType,
+    payload: any
+}
+
+export type ChatState = {
+    activeChatId: string | null,
+    allChats: ChatMetaData[]
+}
+
 export type ChatMetaData = {
     id: string
     title?: string
