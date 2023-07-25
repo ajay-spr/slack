@@ -6,9 +6,12 @@ type MessageListProps = {
 };
 
 const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+  const sortedMessages = messages.sort((a, b) =>
+    a.timestamp < b.timestamp ? 1 : -1
+  );
   return (
     <div className="flex-1 flex flex-col-reverse gap-1 px-2">
-      {messages.map((message) => {
+      {sortedMessages.map((message) => {
         return <Message key={message.id} message={message} />;
       })}
     </div>

@@ -20,11 +20,17 @@ const generateMessage = () => {
     return messages[idx]
 }
 
-const generateTimeStamp = (range: {from: number, to: number} = {from: 25, to: 28}):Date => {
-    const day = Math.floor(Math.random()*30)
-    if(day>range.to || day < range.from) return generateTimeStamp(range)
+const getRandomNumberLessThan = (n:number) => {
+    return Math.floor(Math.random()*n)
+}
 
-    return new Date(2023, 6, day)
+const generateTimeStamp = (range: {from: number, to: number} = {from: 25, to: 28}):Date => {
+    const day = getRandomNumberLessThan(31)
+    if(day>range.to || day < range.from) return generateTimeStamp(range)
+    const hour = getRandomNumberLessThan(24);
+    const minutes = getRandomNumberLessThan(60)
+    const seconds = getRandomNumberLessThan(60)
+    return new Date(2023, 6, day, hour, minutes, seconds)
 }
 
 const generateFromUser = () => {
