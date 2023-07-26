@@ -1,17 +1,23 @@
-import { ChatMetaData } from "@/types";
+import { ChatActionType, ChatMetaData } from "@/types";
 import OrgDetails from "./OrgDetails";
 import SidebarSection from "./SidebarSection";
-import { ChatActionType } from "@/hooks/useChats";
+import { useMemo } from "react";
 
 type SidebarProps = {
   chats: ChatMetaData[];
   activeChatId: null | string;
-  onAction: (type: ChatActionType, payload: any) => void;
+  onAction: any;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ chats, activeChatId, onAction }) => {
-  const channelsList = chats.filter((chat) => chat.isChannel);
-  const dmList = chats.filter((chat) => !chat.isChannel);
+  const channelsList = useMemo(
+    () => chats.filter((chat) => chat.isChannel),
+    [chats]
+  );
+  const dmList = useMemo(
+    () => chats.filter((chat) => !chat.isChannel),
+    [chats]
+  );
 
   return (
     <div className="h-screen p-2 bg-aubergine sticky top-0 text-white">

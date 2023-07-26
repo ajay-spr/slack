@@ -1,5 +1,6 @@
 import { ChatActionType, ChatMetaData } from "@/types";
 import { getTitle } from "@/utils/getChatTitle";
+import { memo } from "react";
 
 type SidebarSectionProps = {
   title: string;
@@ -37,4 +38,4 @@ const SidebarSection: React.FC<SidebarSectionProps> = ({
   );
 };
 
-export default SidebarSection;
+export default memo(SidebarSection);
