@@ -6,9 +6,10 @@ import { Fragment } from "react";
 
 type MessageListProps = {
   messages: TMessage[];
+  onLoadMore: (before: Date) => void;
 };
 
-const MessageList: React.FC<MessageListProps> = ({ messages }) => {
+const MessageList: React.FC<MessageListProps> = ({ messages, onLoadMore }) => {
   const sortedMessages = messages.sort((a, b) =>
     a.timestamp < b.timestamp ? 1 : -1
   );
