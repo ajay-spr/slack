@@ -1,7 +1,7 @@
 import { TMessage } from "@/types";
 import Message from "./Message";
 import Separator from "./Separator";
-import useScrollToBottom from "@/hooks/useScrollToBottom";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { Fragment } from "react";
 import LoadMoreButton from "./LoadMoreButton";
 
@@ -15,15 +15,17 @@ const MessageList: React.FC<MessageListProps> = ({ messages, onLoadMore }) => {
     a.timestamp < b.timestamp ? 1 : -1
   );
   let prev = sortedMessages[0].timestamp;
-  const bottomRef = useScrollToBottom();
 
   const onLoadMoreBeforeLastMessage = () => {
     onLoadMore(sortedMessages[sortedMessages.length - 1].timestamp);
   };
+  const { containerRef } = useInfiniteScroll(
+    sortedMessages,
+    onLoadMoreBeforeLastMessage
+  );
 
   return (
-    <div className="flex-1 flex flex-col-reverse gap-1 px-2">
-      <div ref={bottomRef}></div>
+    <div ref={containerRef} className="flex-1 flex flex-col-reverse gap-1 px-2">
       {sortedMessages.map((message) => {
         const currentDate = message.timestamp.getDate();
         const prevDate = prev.getDate();

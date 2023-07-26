@@ -26,9 +26,10 @@ const getRandomNumberLessThan = (n:number) => {
 
 const generateTimeStamp = (before: Date):Date => {
     const day = getRandomNumberLessThan(31)
-    const beforeDay = before.getDate()
+    let beforeDay = before.getDate()
     const beforeMonth = beforeDay > 2 ? before.getMonth() : before.getMonth()-1;
-    const afterDay = beforeDay > 2 ? beforeDay-2 : 30;
+    beforeDay = beforeDay > 2 ? beforeDay : 30
+    const afterDay = beforeDay-2;
 
 
 
