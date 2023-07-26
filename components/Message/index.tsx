@@ -1,5 +1,6 @@
 import { TMessage } from "@/types";
 import { getUserFromId } from "@/utils/generateUsers";
+import { memo } from "react";
 
 type MessageProps = {
   message: TMessage;
@@ -26,4 +27,4 @@ const Message: React.FC<MessageProps> = ({ message }) => {
   ) : null;
 };
 
-export default Message;
+export default memo(Message);

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type SeparatorProps = {
   date: string;
 };
@@ -12,4 +14,4 @@ const Separator: React.FC<SeparatorProps> = ({ date }) => {
   );
 };
 
-export default Separator;
+export default memo(Separator);
