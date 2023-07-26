@@ -30,9 +30,6 @@ const generateTimeStamp = (before: Date):Date => {
     const beforeMonth = beforeDay > 2 ? before.getMonth() : before.getMonth()-1;
     beforeDay = beforeDay > 2 ? beforeDay : 30
     const afterDay = beforeDay-2;
-
-
-
     if(day>=beforeDay || day < afterDay) return generateTimeStamp(before)
     const hour = getRandomNumberLessThan(24);
     const minutes = getRandomNumberLessThan(60)
