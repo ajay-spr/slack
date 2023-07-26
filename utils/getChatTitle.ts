@@ -3,7 +3,7 @@ import { ChatMetaData } from "@/types";
 import { getUserFromId } from "./generateUsers";
 
 
-export const getTitle = (chat: ChatMetaData) => {
+export const getTitle = (chat: ChatMetaData, maxLength:number = MAX_TITLE_LENGTH) => {
     if (chat.isChannel) return "#" + chat.title;
     if(chat.title) return chat.title
     let title = "";
@@ -15,8 +15,8 @@ export const getTitle = (chat: ChatMetaData) => {
       title += ", " + user.fullName});
 
     title = title.slice(2);
-    if (title.length > MAX_TITLE_LENGTH) {
-      title = title.slice(0, MAX_TITLE_LENGTH);
+    if (title.length > maxLength) {
+      title = title.slice(0, maxLength);
       title += "...";
     }
     return title;
