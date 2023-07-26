@@ -20,7 +20,20 @@ const useMessages = (chatId:string) => {
         fetchMessages()
     }, [])
 
-    return {messages:state.messages, isLoading:state.isLoading, dispatch}
+    const onLoadMore = (before: Date) => {
+        dispatch({
+          type: MessagesActionType.LOAD_MORE,
+          payload: { before },
+        });
+      };
+
+    const onSendMessage = (text: string) => {
+        console.log("Message sent: ", text)
+        return 
+
+    }
+
+    return {messages:state.messages, isLoading:state.isLoading, onLoadMore, onSendMessage}
 }
 
 export default useMessages

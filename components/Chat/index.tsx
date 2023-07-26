@@ -12,14 +12,7 @@ type ChatProps = {
 
 const Chat = ({ id }: ChatProps) => {
   const { details, dispatch: _chatDetailsdispatch } = useChatDetails(id);
-  const { isLoading, messages, dispatch: messagesDispatch } = useMessages(id);
-
-  const onLoadMore = (before: Date) => {
-    messagesDispatch({
-      type: MessagesActionType.LOAD_MORE,
-      payload: { before },
-    });
-  };
+  const { isLoading, messages, onLoadMore, onSendMessage } = useMessages(id);
 
   return (
     <div className="relative w-full h-full flex flex-col">
@@ -29,7 +22,7 @@ const Chat = ({ id }: ChatProps) => {
       ) : (
         <MessageList messages={messages} onLoadMore={onLoadMore} />
       )}
-      <SendMessage onSend={(_message: string) => {}} />
+      <SendMessage onSend={onSendMessage} />
     </div>
   );
 };
