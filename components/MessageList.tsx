@@ -19,10 +19,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages, onLoadMore }) => {
   const onLoadMoreBeforeLastMessage = () => {
     onLoadMore(sortedMessages[sortedMessages.length - 1].timestamp);
   };
-  const { containerRef } = useInfiniteScroll(
-    sortedMessages,
-    onLoadMoreBeforeLastMessage
-  );
+  const { containerRef } = useInfiniteScroll(onLoadMoreBeforeLastMessage);
 
   return (
     <div ref={containerRef} className="flex-1 flex flex-col-reverse gap-1 px-2">

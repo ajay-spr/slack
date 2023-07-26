@@ -1,7 +1,7 @@
 import { TMessage } from "@/types";
 import { useCallback, useEffect, useRef } from "react";
 
-const useInfiniteScroll = (messages: TMessage[], onLoadMore: () => void) => {
+const useInfiniteScroll = (onLoadMore: () => void) => {
   const containerRef = useRef<null | HTMLDivElement>(null);
   const prevHeight = useRef<number>(0);
 
