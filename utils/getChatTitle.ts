@@ -19,6 +19,5 @@ export const getTitle = (chat: ChatMetaData) => {
       title = title.slice(0, MAX_TITLE_LENGTH);
       title += "...";
     }
-    console.log(chat, title)
     return title;
   };

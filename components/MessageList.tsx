@@ -21,8 +21,6 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
         const currentDate = message.timestamp.getDate();
         const prevDate = prev.getDate();
 
-        console.log(currentDate, prevDate, prev === message.timestamp);
-
         if (currentDate != prevDate) {
           const dateString = prev.toLocaleDateString();
           prev = message.timestamp;
