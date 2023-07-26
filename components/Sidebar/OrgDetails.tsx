@@ -1,5 +1,6 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { memo } from "react";
 
 const OrgDetails = () => {
   return (
@@ -15,4 +16,4 @@ const OrgDetails = () => {
   );
 };
 
-export default OrgDetails;
+export default memo(OrgDetails);
