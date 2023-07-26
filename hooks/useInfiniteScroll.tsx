@@ -24,15 +24,6 @@ const useInfiniteScroll = (messages: TMessage[], onLoadMore: () => void) => {
     return () => window.removeEventListener("scroll", handler);
   }, [containerRef, handler]);
 
-  useEffect(() => {
-    if (containerRef.current == null) return;
-    const diff = containerRef.current.scrollHeight - prevHeight.current;
-
-    containerRef.current.scrollTo({ top: diff, behavior: "smooth" });
-    prevHeight.current = containerRef.current.scrollHeight;
-    console.log("scroll- ", diff, containerRef.current);
-  }, [messages]);
-
   return { containerRef };
 };
 
