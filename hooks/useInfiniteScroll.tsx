@@ -1,4 +1,4 @@
-import { TMessage } from "@/types";
+import { AUTO_LOAD_SCROLL_OFFSET } from "@/constants";
 import { useCallback, useEffect, useRef } from "react";
 
 const useInfiniteScroll = (onLoadMore: () => void) => {
@@ -7,7 +7,7 @@ const useInfiniteScroll = (onLoadMore: () => void) => {
 
   const handler = useCallback(() => {
     if (containerRef.current == null) return;
-    if (window.scrollY <= 50) {
+    if (window.scrollY <= AUTO_LOAD_SCROLL_OFFSET) {
       onLoadMore();
     }
   }, [onLoadMore]);
