@@ -38,8 +38,14 @@ const generateTimeStamp = (before: Date):Date => {
 }
 
 const generateFromUser = () => {
-    const idx = Math.floor(Math.random()*10)
+    const idx = getRandomNumberLessThan(users.length)
     return users[idx].id
+}
+
+const generateFileCaption = () => {
+    const files = ["imageFinal.png", "july_receipt.pdf", "config.json", "index.html"]
+    const idx = getRandomNumberLessThan(files.length)
+    return files[idx]
 }
 
 const createMessage: (before: Date) => TMessage = (before) => {
@@ -49,7 +55,7 @@ const createMessage: (before: Date) => TMessage = (before) => {
             id:generateId(),
             type: "file",
             from: generateFromUser(),
-            caption: "imageFinal.png",
+            caption: generateFileCaption(),
             fileURL: "https://www.google.com",
             timestamp: generateTimeStamp(before)
         }
