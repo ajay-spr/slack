@@ -15,7 +15,7 @@ export const messagesReducer = (state: MessagesState, action: MessagesAction) =>
           const newMessages:TMessage[] = generateMessages(50, action.payload.before)
           return {
             ...state,
-            messages: [...state.messages, newMessages]
+            messages: [...state.messages, ...newMessages]
           }
 
       default:

@@ -3,6 +3,7 @@ import Message from "./Message";
 import Separator from "./Separator";
 import useScrollToBottom from "@/hooks/useScrollToBottom";
 import { Fragment } from "react";
+import LoadMoreButton from "./LoadMoreButton";
 
 type MessageListProps = {
   messages: TMessage[];
@@ -15,6 +16,10 @@ const MessageList: React.FC<MessageListProps> = ({ messages, onLoadMore }) => {
   );
   let prev = sortedMessages[0].timestamp;
   const bottomRef = useScrollToBottom();
+
+  const onLoadMoreBeforeLastMessage = () => {
+    onLoadMore(sortedMessages[sortedMessages.length - 1].timestamp);
+  };
 
   return (
     <div className="flex-1 flex flex-col-reverse gap-1 px-2">
@@ -36,6 +41,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages, onLoadMore }) => {
 
         return <Message key={message.id} message={message} />;
       })}
+      <LoadMoreButton onClick={onLoadMoreBeforeLastMessage} />
     </div>
   );
 };
