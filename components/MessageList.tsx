@@ -3,7 +3,6 @@ import Message from "./Message";
 import Separator from "./Separator";
 import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 import { Fragment } from "react";
-import LoadMoreButton from "./LoadMoreButton";
 
 type MessageListProps = {
   messages: TMessage[];
@@ -40,7 +39,6 @@ const MessageList: React.FC<MessageListProps> = ({ messages, onLoadMore }) => {
 
         return <Message key={message.id} message={message} />;
       })}
-      <LoadMoreButton onClick={onLoadMoreBeforeLastMessage} />
     </div>
   );
 };
