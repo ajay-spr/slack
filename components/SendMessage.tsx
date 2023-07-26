@@ -1,3 +1,5 @@
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEventHandler, KeyboardEventHandler, useState } from "react";
 import { flushSync } from "react-dom";
 
@@ -11,25 +13,42 @@ const SendMessage: React.FC<SendMessageProps> = ({ onSend }) => {
     setText(e.target.value);
   };
 
+  const validateAndSend = (text: string, userId: string) => {
+    if (text == "") return;
+    onSend(text, userId);
+    flushSync(() => {
+      setText("");
+    });
+    window.scrollTo(0, document.body.scrollHeight);
+  };
+
+  const handleSend = () => {
+    validateAndSend(text, "243");
+  };
+
   const handleKeyPress: KeyboardEventHandler = (e) => {
     if (e.key == "Enter") {
-      onSend(text, "243");
-      flushSync(() => {
-        setText("");
-      });
-      window.scrollTo(0, document.body.scrollHeight);
+      validateAndSend(text, "243");
     }
   };
 
   return (
-    <div className="sticky bottom-0 p-4 bg-white">
-      <input
-        onChange={handleChange}
-        value={text}
-        onKeyDown={handleKeyPress}
-        className="w-full rounded border border-slate-500 py-2 px-3"
-        placeholder="Enter message here"
-      ></input>
+    <div className="sticky bottom-0 bg-white">
+      <div className="flex p-4 gap-2">
+        <input
+          onChange={handleChange}
+          value={text}
+          onKeyDown={handleKeyPress}
+          className="w-full hover:border-black rounded border border-slate-400 py-2 px-3"
+          placeholder="Enter message here"
+        ></input>
+        <button
+          onClick={handleSend}
+          className=" bg-slackGreen px-3 py-2 rounded"
+        >
+          <FontAwesomeIcon icon={faArrowRight} />
+        </button>
+      </div>
     </div>
   );
 };
