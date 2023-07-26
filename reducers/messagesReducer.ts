@@ -10,13 +10,19 @@ export const messagesReducer = (state: MessagesState, action: MessagesAction) =>
           messages: action.payload.messages
         };
       
-        case MessagesActionType.LOAD_MORE:
+      case MessagesActionType.LOAD_MORE:
           // load more messages
           const newMessages:TMessage[] = generateMessages(50, action.payload.before)
           return {
             ...state,
             messages: [...state.messages, ...newMessages]
           }
+        
+      case MessagesActionType.SEND_MESSAGE:
+        return {
+          ...state,
+          messages: [action.payload.message ,...state.messages]
+        }
 
       default:
         return state;

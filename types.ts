@@ -13,7 +13,8 @@ export enum ChatActionType {
 
 export enum MessagesActionType {
     INITIALIZE_MESSAGES,
-    LOAD_MORE
+    LOAD_MORE,
+    SEND_MESSAGE
 }
 
 export enum ChatDetailsActionType {
