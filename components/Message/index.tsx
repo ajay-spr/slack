@@ -13,7 +13,7 @@ const Message: React.FC<MessageProps> = ({ message }) => {
   };
   return message.type == "text" ? (
     <div className="w-full rounded px-3 py-2 flex gap-2">
-      <div className="bg-slackBlue h-10 w-10 rounded"></div>
+      <div className="bg-slackBlue h-10 w-10 rounded shrink-0"></div>
       <div>
         <div className="flex gap-2 items-baseline">
           <span className="font-bold">{user?.fullName}</span>
