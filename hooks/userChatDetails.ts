@@ -20,7 +20,7 @@ const useChatDetails = (id: string) => {
         }
         fetchChatDetails()
     }, [id])
-    return {details: state.details, dispatch}
+    return {details: state.details}
 }
 
 

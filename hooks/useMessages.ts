@@ -29,8 +29,6 @@ const useMessages = (chatId:string) => {
 
     const onSendMessage = (text: string) => {
         console.log("Message sent: ", text)
-        return 
-
     }
 
     return {messages:state.messages, isLoading:state.isLoading, onLoadMore, onSendMessage}

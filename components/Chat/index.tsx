@@ -4,14 +4,13 @@ import useChatDetails from "@/hooks/userChatDetails";
 import ChatHeader from "./ChatHeader";
 import MessageList from "../MessageList";
 import SendMessage from "../SendMessage";
-import { MessagesActionType } from "@/types";
 
 type ChatProps = {
   id: string;
 };
 
 const Chat = ({ id }: ChatProps) => {
-  const { details, dispatch: _chatDetailsdispatch } = useChatDetails(id);
+  const { details } = useChatDetails(id);
   const { isLoading, messages, onLoadMore, onSendMessage } = useMessages(id);
 
   return (
