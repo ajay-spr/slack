@@ -2,6 +2,7 @@ import { TMessage } from "@/types";
 import Message from "./Message";
 import Separator from "./Separator";
 import useScrollToBottom from "@/hooks/useScrollToBottom";
+import { Fragment } from "react";
 
 type MessageListProps = {
   messages: TMessage[];
@@ -16,7 +17,7 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
 
   return (
     <div className="flex-1 flex flex-col-reverse gap-1 px-2">
-      <div key="scrollToBottomRef" ref={bottomRef}></div>
+      <div ref={bottomRef}></div>
       {sortedMessages.map((message) => {
         const currentDate = message.timestamp.getDate();
         const prevDate = prev.getDate();
@@ -25,18 +26,14 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
           const dateString = prev.toLocaleDateString();
           prev = message.timestamp;
           return (
-            <>
+            <Fragment key={message.id}>
               <Separator date={dateString} />
-              <Message key={message.id} message={message} />
-            </>
+              <Message message={message} />
+            </Fragment>
           );
         }
 
-        return (
-          <>
-            <Message key={message.id} message={message} />
-          </>
-        );
+        return <Message key={message.id} message={message} />;
       })}
     </div>
   );
