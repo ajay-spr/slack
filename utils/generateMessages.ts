@@ -24,13 +24,19 @@ const getRandomNumberLessThan = (n:number) => {
     return Math.floor(Math.random()*n)
 }
 
-const generateTimeStamp = (range: {from: number, to: number} = {from: 25, to: 28}):Date => {
+const generateTimeStamp = (before: Date):Date => {
     const day = getRandomNumberLessThan(31)
-    if(day>range.to || day < range.from) return generateTimeStamp(range)
+    const beforeDay = before.getDate()
+    const beforeMonth = beforeDay > 2 ? before.getMonth() : before.getMonth()-1;
+    const afterDay = beforeDay > 2 ? beforeDay-2 : 30;
+
+
+
+    if(day>=beforeDay || day < afterDay) return generateTimeStamp(before)
     const hour = getRandomNumberLessThan(24);
     const minutes = getRandomNumberLessThan(60)
     const seconds = getRandomNumberLessThan(60)
-    return new Date(2023, 6, day, hour, minutes, seconds)
+    return new Date(2023, beforeMonth, day, hour, minutes, seconds)
 }
 
 const generateFromUser = () => {
@@ -38,7 +44,7 @@ const generateFromUser = () => {
     return users[idx].id
 }
 
-const createMessage: () => TMessage = () => {
+const createMessage: (before: Date) => TMessage = (before) => {
     let message:TMessage;
     if(Math.random() > 0.8){
         message = {
@@ -47,7 +53,7 @@ const createMessage: () => TMessage = () => {
             from: generateFromUser(),
             caption: "imageFinal.png",
             fileURL: "https://www.google.com",
-            timestamp: generateTimeStamp()
+            timestamp: generateTimeStamp(before)
         }
     } else {
         message= {
@@ -55,12 +61,12 @@ const createMessage: () => TMessage = () => {
             type: "text",
             from: generateFromUser(),
             message: generateMessage(),
-            timestamp: generateTimeStamp()
+            timestamp: generateTimeStamp(before)
         }
     }
     return message
 }
 
-export const generateMessages = (n: number) => {
-    return Array(n).fill(null).map(message => createMessage())    
+export const generateMessages = (n: number, before:Date = new Date()) => {
+    return Array(n).fill(null).map(message => createMessage(before))    
 }

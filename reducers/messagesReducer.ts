@@ -1,4 +1,5 @@
 import { MessagesAction, MessagesActionType, MessagesState, TMessage } from "@/types";
+import { generateMessages } from "@/utils/generateMessages";
 
 export const messagesReducer = (state: MessagesState, action: MessagesAction) => {
     switch (action.type) {
@@ -11,7 +12,7 @@ export const messagesReducer = (state: MessagesState, action: MessagesAction) =>
       
         case MessagesActionType.LOAD_MORE:
           // load more messages
-          const newMessages:TMessage[] = []
+          const newMessages:TMessage[] = generateMessages(50, action.payload.before)
           return {
             ...state,
             messages: [...state.messages, newMessages]
